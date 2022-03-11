@@ -1,0 +1,3 @@
+{
+    "mongoURI": "mongodb+srv://blockchain:bpFahx0gQk46Jj1d@cluster0.ku3px.mongodb.net/blockchain?retryWrites=true&w=majority"
+}
