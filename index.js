@@ -7,6 +7,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public"));
 app.set("view engine", "ejs");
 app.set("views", "./views");
+app.use("/scripts", express.static(__dirname+"/node_modules/web3.js-browser/build/"));
 
 
 
