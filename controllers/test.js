@@ -1,9 +1,9 @@
 const User = require('../models/User');
 
 module.exports = (app) => {
-    app.get("/", (req, res) => {
-        return res.render('test');
-    });
+    // app.get("/", (req, res) => {
+    //     return res.render('test');
+    // });
 
     app.post("/register", (req, res) => {
         const email = req.body.email;

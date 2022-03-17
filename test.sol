@@ -8,10 +8,12 @@ contract Payable {
         owner = payable(msg.sender);
     }
 
-    function payment(string memory _id) public payable returns (string memory){
+    event sendDataBack(string id, address _sender);
+
+    function payment(string memory _id) external payable {
         (bool success, ) = owner.call{value: msg.value}("");
         require(success, "Failed to send Ether");
-        return _id;
+        emit sendDataBack(_id, msg.sender);
     }
 
 }

@@ -9,6 +9,25 @@ $(document).ready(() => {
             "type": "constructor"
         },
         {
+            "anonymous": false,
+            "inputs": [
+                {
+                    "indexed": false,
+                    "internalType": "string",
+                    "name": "id",
+                    "type": "string"
+                },
+                {
+                    "indexed": false,
+                    "internalType": "address",
+                    "name": "_sender",
+                    "type": "address"
+                }
+            ],
+            "name": "sendDataBack",
+            "type": "event"
+        },
+        {
             "inputs": [],
             "name": "owner",
             "outputs": [
@@ -30,22 +49,21 @@ $(document).ready(() => {
                 }
             ],
             "name": "payment",
-            "outputs": [
-                {
-                    "internalType": "string",
-                    "name": "",
-                    "type": "string"
-                }
-            ],
+            "outputs": [],
             "stateMutability": "payable",
             "type": "function"
         }
     ];
-    const addressSmartContract = "0x59d03375844dB214170559F8830328027c03a385";
 
-    const web3 = new Web3(window.ethereum);
+    let r ;
+    const addressSmartContract = "0x10EFF051c63d163c5BC6882E87822c06e8982c19";
+    const OPTIONS = {
+        defaultBlock: "latest",
+        transactionConfirmationBlocks: 1,
+        transactionBlockTimeout: 5
+    };
+    const web3 = new Web3(window.ethereum, null, OPTIONS);
     window.ethereum.enable();
-
     let contract_MM = new web3.eth.Contract(abi, addressSmartContract);
     
 
@@ -87,25 +105,32 @@ $(document).ready(() => {
         
     });
 
-    $("#payment").click(async() => {
-        const amount = $("#amount").val();
-        if(currentAccount !== ""){
 
-            await contract_MM.methods.payment("1").send({
+    $("#payment").click(() => {
+        const amount = $("#amount").val();
+        let c = true;
+        
+        if(currentAccount !== ""){
+            
+            contract_MM.methods.payment("1").send({
                 from: currentAccount,
                 value: amount*(10**18)
             })
-            .on('transactionHash', function(transactionHash){
-                alert("Thanh toán thành công!!!");
+            .on('confirmation', () => {
+                if(c){
+                    alert("Thanh toán thành công");
+                    c = false;
+                }
             })
-            .on('error', function(error) {
-                alert("Thanh toán mẹ thành công!!!");
+            .on('error', (error) => { 
                 console.log(error);
+                alert("Thanh toán mẹ thành công");
             });
 
         } else {
             alert("Metamask not connect");
         }
+        
     });
 
 });
