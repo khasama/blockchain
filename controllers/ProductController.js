@@ -1,4 +1,5 @@
 const Product = require("../models/Product");
+const fs = require('fs');
 class ProductController {
 
     async create(req, res) {
@@ -23,13 +24,69 @@ class ProductController {
         
     }
 
-    update(req, res) {
-        //
+    async update(req, res) {
+        const id = req.body.id;
+        const name = req.body.name;
+        const description = req.body.description;
+        const price = req.body.price;
+        const slug = slugify(name);
+        let image;
+        if(req.files){
+            const file = req.files.file;
+            const type = file.name.split(".")[file.name.split(".").length - 1];
+            const imgName = new Date().getTime();
+            image = `${imgName}.${type}`;
+            fs.unlink(`./public/img/product/${req.body.image}`, (err) => {
+                if (!err) {
+                    file.mv(`./public/img/product/${image}`, (err) => {
+                        if (err) {
+                            console.log(err);
+                        }
+                    });
+                } else {
+                  console.log(err);
+                }
+            });
+            
+        }else{
+            image = req.body.image;
+        }
+        await Product.updateOne({_id: id}, {name, description, image, price, slug});
+        res.redirect("/admin/product");
     }
 
-    delete(req, res) {
-        //
+    async delete(req, res) {
+        const id = req.body.id;
+        await Product.deleteOne({_id: id})
+            .then((data) => {
+                fs.unlink(`./public/img/product/${req.body.img}`, (err) => {
+                    if (!err) {
+                        res.json(data);
+                    }
+                });
+                
+            })
+            .catch((err) => {
+                res.json(err);
+            });
+    }
+
+    async get(req, res) {
+        const id = req.params.id;
+        const product = await Product.find({_id:id}).lean();
+        res.json(product);
     }
 }
 
+function slugify(string) {
+    return string
+        .toString()
+        .trim()
+        .toLowerCase()
+        .replace(/\s+/g, "-")
+        .replace(/[^\w\-]+/g, "")
+        .replace(/\-\-+/g, "-")
+        .replace(/^-+/, "")
+        .replace(/-+$/, "");
+}
 module.exports = new ProductController;

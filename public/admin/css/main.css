@@ -63,6 +63,7 @@
     padding: .15em .8em;
 }
 
-#new-product{
+#new-product, 
+#edit-product {
     max-width: 50% !important;
 }

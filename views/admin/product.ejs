@@ -49,10 +49,13 @@
                                         <% products.forEach(product => { %>
                                             <tr>
                                                 <td> <%- product.name %> </td>
-                                                <td> <%- product.image %> </td>
+                                                <td> <img src="/img/product/<%- product.image %>" width="150"> </td>
                                                 <td> <%- product.price %> </td>
                                                 <td> <%- product.status %> </td>
-                                                <td> sửa | Xóa </td>
+                                                <td> 
+                                                    <a href="javascript:void(0)" class="editProd" data-id="<%- product._id %>" data-toggle="modal" data-target="#editProduct">Edit</a> | 
+                                                    <a href="javascript:void(0)" class="deleteProd" data-id="<%- product._id %>" data-img="<%- product.image %>">Delete</a> 
+                                                </td>
                                             </tr>
                                         <% }); %>
                                     </tbody>
@@ -89,7 +92,44 @@
                                             <input type="file" name="file" class="form-control-file border mt-3">
                                         </div>
 
-                                        <button type="submit" class="btn btn-primary" name="submit">Tạo</button>
+                                        <button type="submit" class="btn btn-primary" name="submit">Create</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="modal fade" id="editProduct" tabindex="-1" role="dialog" aria-hidden="true">
+                        <div class="modal-dialog" role="document" id="edit-product">
+                            <div class="modal-content" >
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">EDIT PRODUCT</h5>
+                                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">×</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <form action="/product/update" method="POST" encType="multipart/form-data">
+                                        <div class="form-group">
+                                            <label for="name">Name:</label>
+                                            <input type="text" class="form-control" id="editName" name="name" autocomplete="off">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="description">Description:</label>
+                                            <input type="text" class="form-control" id="editDescription" name="description" autocomplete="off">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="price">Price:</label>
+                                            <input type="number" class="form-control" id="editPrice" name="price" autocomplete="off">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="price">Image:</label>
+                                            <input type="file" name="file" class="form-control-file border mt-3">
+                                        </div>
+                                        <img src="" id="img" width="150"> <br> <br>
+                                        <input type="hidden" name="id" id="idProduct" class="form-control-file border mt-3">
+                                        <input type="hidden" name="image" id="useImg" class="form-control-file border mt-3">
+                                        <button type="submit" class="btn btn-primary" name="submit">Edit</button>
                                     </form>
                                 </div>
                             </div>

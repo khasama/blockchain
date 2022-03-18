@@ -18,8 +18,9 @@ const userSchema = new Schema({
         type: Date,
         default: Date.now
     },
-    wallet: {
-        type: String
+    role: {
+        type: Number,
+        default: 1
     },
     avatar: {
         type: String,

@@ -11,8 +11,12 @@
         <%- include('../partials/header') %> 
     </header>
 
+    <script>
+        document.getElementById("url").innerHTML = "Page location is " + window.location.href;
+    </script>
 
-    <h2>home</h2>
+    <h2 id="url">home</h2>
+
 
     <footer>
         <%- include('../partials/footer') %> 

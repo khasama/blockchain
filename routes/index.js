@@ -6,7 +6,7 @@ function route(app) {
 
     app.use("/admin", admin);
     app.use("/product", product);
-    app.use("/", site);
+    //app.use("/", site);
 }
 
 module.exports = route;

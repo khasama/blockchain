@@ -20,14 +20,15 @@ const productSchema = new Schema({
         type: Number,
         required: true
     },
-    status: {
-        type: String,
-        default: "Còn hàng"
-    },
     slug: {
         type: String,
         slug: "name"
+    },
+    status: {
+        type: String,
+        default: "Còn hàng"
     }
+    
 }, { timestamps: true });
 
 module.exports = mongoose.model('product', productSchema);
