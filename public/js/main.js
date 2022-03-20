@@ -107,29 +107,45 @@ $(document).ready(() => {
 
 
     $("#payment").click(() => {
-        const amount = $("#amount").val();
-        let c = true;
-        
-        if(currentAccount !== ""){
-            
-            contract_MM.methods.payment("1").send({
-                from: currentAccount,
-                value: amount*(10**18)
-            })
-            .on('confirmation', () => {
-                if(c){
-                    alert("Thanh toán thành công");
-                    c = false;
-                }
-            })
-            .on('error', (error) => { 
-                console.log(error);
-                alert("Thanh toán mẹ thành công");
-            });
+        const price = $("#price").text();
+        $.ajax({
+            method: "GET",
+            url: `${window.location.origin}/cart/convert/${price}`,
+        }).done((data) => {
+            let c = true;
+            if(currentAccount !== ""){
+                console.log(data.toFixed(3));
+                contract_MM.methods.payment("1").send({
+                    from: currentAccount,
+                    value: data.toFixed(3)*(10**18)
+                })
+                .on('confirmation', () => {
+                    if(c){
+                        $.ajax({
+                            method: "POST",
+                            url: `${window.location.origin}/cart/payment/`,
+                            data: {total: price, wallet: currentAccount}
+                        }).done((resutl) => {
+                            alert(resutl);
+                            window.location.href = "/";
+                            c = false;
+                        }).fail(() => {
+                            alert("Error !!!!");
+                        });
+                        c = false;
+                    }
+                })
+                .on('error', (error) => { 
+                    console.log(error);
+                    alert("Thanh toán mẹ thành công");
+                });
 
-        } else {
-            alert("Metamask not connect");
-        }
+            } else {
+                alert("Metamask not connect");
+            }
+        }).fail(() => {
+            alert("Error !!!!");
+        });
         
     });
 

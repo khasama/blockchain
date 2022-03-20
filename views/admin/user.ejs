@@ -38,31 +38,31 @@
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
-                                            <th>Name</th>
-                                            <th style="width: 25%;"><a href="javascript:void(0)" data-toggle="modal" data-target="#newMovie">New</a></th>
+                                            <th>STT</th>
+                                            <th>Username</th>
+                                            <th>Email</th>
+                                            <th>Role</th>
+                                            <th style="width: 25%;"></th>
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        <% users.forEach(user => { %>
                                         <tr>
-                                            <td>123</td>
-                                            <td>123</td>
+                                            <td> <%- users.indexOf(user) + 1; %>  </td>
+                                            <td> <%- user.username %>  </td>
+                                            <td> <%- user.email %> </td>
+                                            <td> 
+                                                <% if(user.role == 1){ %>
+                                                    <a href="javascript:void(0)">Normal</a>
+                                                <% } else { %>
+                                                    <a href="javascript:void(0)">Admin</a>
+                                                <% } %>  
+                                            </td>
+                                            <td>
+                                                <a href="javascript:void(0)" class="deleteUser" data-id="<%- user._id %>">Delete</a>
+                                            </td>
                                         </tr>
-                                        <tr>
-                                            <td>456</td>
-                                            <td>123</td>
-                                        </tr>
-                                        <tr>
-                                            <td>123</td>
-                                            <td>123</td>
-                                        </tr>
-                                        <tr>
-                                            <td>123</td>
-                                            <td>123</td>
-                                        </tr>
-                                        <tr>
-                                            <td>123</td>
-                                            <td>123</td>
-                                        </tr>
+                                        <% }) %> 
                                     </tbody>
                                 </table>
                             </div>

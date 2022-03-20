@@ -1,26 +1,120 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <%- include('../partials/head') %>
 </head>
+
 <body>
     <header>
-        <%- include('../partials/header') %> 
+        <%- include('../partials/header') %>
     </header>
 
-    <script>
-        document.getElementById("url").innerHTML = "Page location is " + window.location.href;
-    </script>
 
-    <h2 id="url">home</h2>
+    <body>
+
+        <% if(login) {%>
+            <a href="/user/logout" class="btn btn-primary">
+                Logout
+            </a>
+        <% } else { %>
+            <div>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#register-form">
+                    Register
+                </button>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#login-form">
+                    Login
+                </button>
+            </div>
+        <% } %>
+        <!-- Register Modal -->
+        <div class="modal fade" id="register-form" tabindex="-1" role="dialog"
+        aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Register</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form method="POST" action="/user/register">
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" class="form-control" id="emailReg"
+                                    aria-describedby="emailHelp" name="email" placeholder="Enter email">
+                            </div>
+                            <div class="form-group">
+                                <label for="username">Username</label>
+                                <input type="text" class="form-control" id="usernameReg" name="username"
+                                    placeholder="Username" autocomplete="off">
+                            </div>
+                            <div class="form-group">
+                                <label for="pass">Password</label>
+                                <input type="password" class="form-control" id="passwordReg" name="password"
+                                    placeholder="Password">
+                            </div>
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Login Modal -->
+        <div class="modal fade" id="login-form" tabindex="-1" role="dialog"
+            aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Login</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form method="POST" action="/user/login">
+                            <div class="form-group">
+                                <label for="username">Username</label>
+                                <input type="text" class="form-control" id="usernameLog" name="username"
+                                    placeholder="Enter username">
+                            </div>
+                            <div class="form-group">
+                                <label for="pass">Password</label>
+                                <input type="password" class="form-control" id="passwordLog" name="password"
+                                    placeholder="Password">
+                            </div>
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div><a href="/cart">Cart</a>: <span id="cart"><%- cart %> </span></div>
+        <div id="main" 
+            style="width: 1280px; margin: 0 auto; background-color: #dfdfdf; padding: 10px; display: flex; flex-wrap: wrap;align-content: flex-start; justify-content: space-around;">
+            <% products.forEach(prod => { %> 
+                <div class="card" style="width: 18rem; margin-bottom: 10px;">
+                    <img class="card-img-top" src="/img/product/<%- prod.image %>" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title"><%- prod.name %></h5>
+                        <p class="card-text"><%- prod.price %>,00$</p>
+                        <a href="/cart/add/<%- prod._id %>/1" class="btn btn-primary">Add cart</a>
+                    </div>
+                </div>
+            <% }); %> 
+        </div>
+    </body>
 
 
     <footer>
-        <%- include('../partials/footer') %> 
+        <%- include('../partials/footer') %>
     </footer>
-    
+
+
+    <%- include('../partials/foot') %>
 </body>
+
 </html>

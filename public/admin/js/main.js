@@ -39,6 +39,24 @@ $(document).ready(function () {
         }
         
     });
+
+    $(".deleteUser").click(function(){
+        const id = this.getAttribute("data-id");
+        if (confirm("Are you sure about that?")) {
+            $.ajax({
+                method: "POST",
+                url: `${window.location.origin}/user/delete`,
+                data: {id: id}
+            }).done(() => {
+                location.reload();
+            }).fail(() => {
+                alert("Error !!!!");
+            });
+        } else {
+            return false;
+        }
+        
+    });
     
 });
 

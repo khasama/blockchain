@@ -1,22 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <%- include('../partials/head') %>
 </head>
+
 <body>
     <header>
-        <%- include('../partials/header') %> 
+        <%- include('../partials/header') %>
     </header>
 
-    <h2>cart</h2>
+    <div class="main">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Product name</th>
+                    <th>Quantity</th>
+                    <th>Price</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% 
+                    let total = 0;
+                    carts.forEach(c =>{  
+                %> 
+                    <tr>
+                        <td> <%- c.name %>  </td>
+                        <td> <%- c.quantity %>  </td>
+                        <td> <%- c.price %>  </td>
+                    </tr>
+                <% 
+                        total += c.quantity*c.price; 
+                    }); 
+                %> 
+            </tbody>
+        </table>
+        <h4>Total price: <span id="price"><%- total %></span>,00$</h4>
+        <a href="javascript:void(0)" class="btn btn-primary" id="payment">Payment</a><br>
+        <button id="connMM">Connect Metamask</button>
+        <p><span>your wallet: </span><span id="wallet"></span></p>
+    </div>
 
 
     <footer>
-        <%- include('../partials/footer') %> 
+        <%- include('../partials/footer') %>
     </footer>
-    
+
+    <%- include('../partials/foot') %>
 </body>
+
 </html>

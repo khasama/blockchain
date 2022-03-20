@@ -38,6 +38,7 @@
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
+                                            <th>STT</th>
                                             <th>Name</th>
                                             <th>Image</th>
                                             <th>Price</th>
@@ -48,6 +49,7 @@
                                     <tbody>
                                         <% products.forEach(product => { %>
                                             <tr>
+                                                <td> <%- products.indexOf(product) + 1; %>  </td>
                                                 <td> <%- product.name %> </td>
                                                 <td> <img src="/img/product/<%- product.image %>" width="150"> </td>
                                                 <td> <%- product.price %> </td>

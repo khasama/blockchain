@@ -1,17 +1,22 @@
 const Product = require("../models/Product");
+const Bill = require("../models/Bill");
+const User = require("../models/User");
 class AdminController {
 
     async product(req, res) {
         const products = await Product.find({}).lean();
         res.render("admin/product", {products});
+        
     }
 
-    user(req, res) {
-        res.render("admin/user");
+    async user(req, res) {
+        const users = await User.find({}).lean();
+        res.render("admin/user", {users});
     }
 
-    bill(req, res) {
-        res.render("admin/bill");
+    async bill(req, res) {
+        const bills = await Bill.find({}).lean();
+        res.render("admin/bill", {bills});
     }
 
     home(req, res) {
