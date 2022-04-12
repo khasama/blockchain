@@ -27,6 +27,7 @@
     "express-session": "^1.17.2",
     "mongoose": "^6.2.5",
     "mongoose-slug-generator": "^1.0.4",
+    "package.json": "^2.0.1",
     "web3": "^1.7.1",
     "web3.js-browser": "^0.2.0"
   }

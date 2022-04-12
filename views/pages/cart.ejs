@@ -11,34 +11,49 @@
     </header>
 
     <div class="main">
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>Product name</th>
-                    <th>Quantity</th>
-                    <th>Price</th>
-                </tr>
-            </thead>
-            <tbody>
-                <% 
-                    let total = 0;
-                    carts.forEach(c =>{  
-                %> 
-                    <tr>
-                        <td> <%- c.name %>  </td>
-                        <td> <%- c.quantity %>  </td>
-                        <td> <%- c.price %>  </td>
-                    </tr>
-                <% 
-                        total += c.quantity*c.price; 
-                    }); 
-                %> 
-            </tbody>
-        </table>
-        <h4>Total price: <span id="price"><%- total %></span>,00$</h4>
-        <a href="javascript:void(0)" class="btn btn-primary" id="payment">Payment</a><br>
-        <button id="connMM">Connect Metamask</button>
-        <p><span>your wallet: </span><span id="wallet"></span></p>
+        
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-6">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Product name</th>
+                                <th>Quantity</th>
+                                <th>Price</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% 
+                                let total = 0;
+                                carts.forEach(c =>{  
+                            %> 
+                                <tr>
+                                    <td> <%- c.name %>  </td>
+                                    <td> <%- c.quantity %>  </td>
+                                    <td> <%- c.price %>  </td>
+                                </tr>
+                            <% 
+                                    total += c.quantity*c.price; 
+                                }); 
+                            %> 
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-6 ">
+                    <div class="row mt-3">
+                        <div class="col-6 border-right">
+                            <h4  class="py-2">Total price: <span id="price"><%- total %></span>,00$</h4>
+                            <a href="javascript:void(0)" class="btn btn-primary" id="payment">Payment</a><br>
+                        </div>
+                        <div class="col-6">
+                            <button class="button-19" id="connMM">Connect Metamask</button>
+                            <p class="button-18"><span>your wallet: </span><span id="wallet"></span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
 

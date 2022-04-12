@@ -12,32 +12,19 @@
 
 
     <body>
-
-        <% if(login) {%>
-            <a href="/user/logout" class="btn btn-primary">
-                Logout
-            </a>
-        <% } else { %>
-            <div>
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#register-form">
-                    Register
-                </button>
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#login-form">
-                    Login
-                </button>
-            </div>
-        <% } %>
         <!-- Register Modal -->
         <div class="modal fade" id="register-form" tabindex="-1" role="dialog"
         aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Register</h5>
+                        <img src="img/product/22.png" alt="">
+				        <p href="/index">ATOM Store</p>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
+                    <h5 class="modal-title text-center" id="exampleModalLabel"><b>REGISTER</b></h5>
                     <div class="modal-body">
                         <form method="POST" action="/user/register">
                             <div class="form-group">
@@ -55,7 +42,7 @@
                                 <input type="password" class="form-control" id="passwordReg" name="password"
                                     placeholder="Password">
                             </div>
-                            <button type="submit" class="btn btn-primary">Submit</button>
+                            <button type="submit" class="btn bg-info text-white">Submit</button>
                         </form>
                     </div>
                 </div>
@@ -68,11 +55,14 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Login</h5>
+                        <img src="img/product/22.png" alt="">
+				        <p href="/index">ATOM Store</p>	
+                        <br>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
+                    <h5 class="modal-title text-center" id="exampleModalLabel"><b>LOGIN</b></h5>
                     <div class="modal-body">
                         <form method="POST" action="/user/login">
                             <div class="form-group">
@@ -85,26 +75,29 @@
                                 <input type="password" class="form-control" id="passwordLog" name="password"
                                     placeholder="Password">
                             </div>
-                            <button type="submit" class="btn btn-primary">Submit</button>
+                            <button type="submit" class="btn bg-info text-white text-center">Submit</button>
                         </form>
                     </div>
                 </div>
             </div>
         </div>
+        <!-- Carousel -->
+        <%- include('../partials/carousel') %>
 
-        <div><a href="/cart">Cart</a>: <span id="cart"><%- cart %> </span></div>
-        <div id="main" 
-            style="width: 1280px; margin: 0 auto; background-color: #dfdfdf; padding: 10px; display: flex; flex-wrap: wrap;align-content: flex-start; justify-content: space-around;">
-            <% products.forEach(prod => { %> 
-                <div class="card" style="width: 18rem; margin-bottom: 10px;">
-                    <img class="card-img-top" src="/img/product/<%- prod.image %>" alt="Card image cap">
-                    <div class="card-body">
-                        <h5 class="card-title"><%- prod.name %></h5>
-                        <p class="card-text"><%- prod.price %>,00$</p>
-                        <a href="/cart/add/<%- prod._id %>/1" class="btn btn-primary">Add cart</a>
+        <div class="container-fluid" style="width:85% !important;">
+            <h3>*Product</h3>
+            <div id="main" class="prod">
+                <% products.forEach(prod => { %> 
+                    <div class="card">
+                        <a href="/detail" class="btn bg-light"><img class="card-img-top" src="/img/product/<%- prod.image %>" alt="Card image cap"></a>
+                        <div class="card-body">
+                            <h5 class="card-title"><%- prod.name %></h5>
+                            <p class="card-text"><%- prod.price %>,00$</p>
+                            <a href="/cart/add/<%- prod._id %>/1" class="btn bg-info text-white">Add cart</a>
+                        </div>
                     </div>
-                </div>
-            <% }); %> 
+                <% }); %> 
+            </div>
         </div>
     </body>
 
