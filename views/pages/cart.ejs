@@ -24,8 +24,10 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <% let total=0; carts.forEach(c=>{
-                                %>
+                            <% 
+                                let total=0; 
+                                carts.forEach(c=>{ 
+                            %>
                                 <tr>
                                     <td>
                                         <%- c.name %>
@@ -34,28 +36,24 @@
                                         <%- c.quantity %>
                                     </td>
                                     <td>
-                                        <%- c.price %>
+                                        <%- c.price %>,00$
                                     </td>
                                 </tr>
-                                <% total +=c.quantity*c.price; }); %>
+                            <% total +=c.quantity*c.price; }); %>
                         </tbody>
                     </table>
                 </div>
                 <div class="col-6 ">
                     <div class="row mt-3">
                         <div class="col-6 border-right">
-                            <h4 class="py-2">Total price: <span id="price">
-                                    <%- total %>
-                                </span>,00$</h4>
-                            <a href="javascript:void(0)" class="btn btn-primary" id="payment"  data-toggle="modal" data-target="#loading">Payment</a><br>
+                            <h4 class="py-2">Total price: <span id="price"><%- total%></span>,00$</h4>
+                            <a href="javascript:void(0)" class="btn btn-primary" id="payment" >Payment</a><br>
                         </div>
                         <div class="col-6">
                             <button class="button-19" id="connMM">Connect Metamask</button>
                             <p class="button-18"><span>your wallet: </span>
                                 <span id="wallet"> </span>
                             </p>
-
-
                         </div>
                     </div>
                 </div>
@@ -63,28 +61,19 @@
         </div>
     </div>
 
-    <!-- model -->
-
-        <!-- The Modal -->
-        <div class="modal " id="loading">
-            <div class="modal-dialog">
-                <div class="modal-content">
-
-                    <!-- Modal Header -->
-                    <div class="modal-header">
-                        <h4 class="modal-title">Giao dịch đang xử lý!</h4>
-                    </div>
-
-                    <!-- Modal body -->
-                    <div class="modal-body">
-                        <p>Tắt là mất!</p>
-                        <img src="/public/img/product/1-.png" alt="">
-                    </div>
-
+    <div class="modal fade" id="waitpayment" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">ĐANG XỬ LÝ THANH TOÁN</h5>
+                </div>
+                <div class="modal-body" id="wait-c">
+                    Hệ thống đang xử lý thanh toán, vui lòng không đóng cửa sổ !!!
                 </div>
             </div>
-
         </div>
+    </div>
+
 
     <footer>
         <%- include('../partials/footer') %>

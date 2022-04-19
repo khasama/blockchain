@@ -2,10 +2,6 @@ $(document).ready(() => {
     
     let currentAccount = "";
 
-    if(currentAccount !=""){
-        $("#wallet").html(currentAccount);
-    }
-
     const abi = [
         {
             "inputs": [],
@@ -117,8 +113,9 @@ $(document).ready(() => {
             url: `${window.location.origin}/cart/convert/${price}`,
         }).done((data) => {
             let c = true;
+            console.log(data);
             if(currentAccount !== ""){
-                console.log(data.toFixed(3));
+                $('#waitpayment').modal('show');
                 contract_MM.methods.payment("1").send({
                     from: currentAccount,
                     value: data.toFixed(3)*(10**18)
@@ -130,25 +127,25 @@ $(document).ready(() => {
                             url: `${window.location.origin}/cart/payment/`,
                             data: {total: price, wallet: currentAccount}
                         }).done((resutl) => {
-                            alert(resutl);
-                            window.location.href = "/";
+                            $("#wait-c").html(resutl);
+                            window.setTimeout(() => {
+                                window.location.href = "/";
+                            }, 3000);                   
                             c = false;
                         }).fail(() => {
+                            $('#waitpayment').modal('hide');
                             alert("Error !!!!");
-                            $("#loading").hide();
                         });
                         c = false;
                     }
                 })
                 .on('error', (error) => { 
                     console.log(error);
+                    $('#waitpayment').modal('hide');
                     alert("Thanh toán mẹ thành công");
-                    $("#loading").hide();
                 });
-                $("#loading").show();
             } else {
                 alert("Metamask not connect");
-                $("#loading").hide();
             }
         }).fail(() => {
             alert("Error !!!!");
