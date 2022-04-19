@@ -2,6 +2,10 @@ $(document).ready(() => {
     
     let currentAccount = "";
 
+    if(currentAccount !=""){
+        $("#wallet").html(currentAccount);
+    }
+
     const abi = [
         {
             "inputs": [],
@@ -131,6 +135,7 @@ $(document).ready(() => {
                             c = false;
                         }).fail(() => {
                             alert("Error !!!!");
+                            $("#loading").hide();
                         });
                         c = false;
                     }
@@ -138,13 +143,16 @@ $(document).ready(() => {
                 .on('error', (error) => { 
                     console.log(error);
                     alert("Thanh toán mẹ thành công");
+                    $("#loading").hide();
                 });
-
+                $("#loading").show();
             } else {
                 alert("Metamask not connect");
+                $("#loading").hide();
             }
         }).fail(() => {
             alert("Error !!!!");
+            $("#loading").hide();
         });
         
     });
