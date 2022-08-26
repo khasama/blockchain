@@ -8,7 +8,7 @@ class ProductController {
         const description = req.body.description;
         const price = req.body.price;
         const type = file.name.split(".")[file.name.split(".").length - 1];
-        if(type === "jpg" || type === "png" || type === "jpeg" || type === "webp") {
+        if (type === "jpg" || type === "png" || type === "jpeg" || type === "webp") {
             const imgName = new Date().getTime();
             const image = `${imgName}.${type}`;
             const newProduct = new Product({ name, description, image, price });
@@ -21,7 +21,7 @@ class ProductController {
                 }
             });
         }
-        
+
     }
 
     async update(req, res) {
@@ -31,7 +31,7 @@ class ProductController {
         const price = req.body.price;
         const slug = slugify(name);
         let image;
-        if(req.files){
+        if (req.files) {
             const file = req.files.file;
             const type = file.name.split(".")[file.name.split(".").length - 1];
             const imgName = new Date().getTime();
@@ -44,27 +44,27 @@ class ProductController {
                         }
                     });
                 } else {
-                  console.log(err);
+                    console.log(err);
                 }
             });
-            
-        }else{
+
+        } else {
             image = req.body.image;
         }
-        await Product.updateOne({_id: id}, {name, description, image, price, slug});
+        await Product.updateOne({ _id: id }, { name, description, image, price, slug });
         res.redirect("/admin/product");
     }
 
     async delete(req, res) {
         const id = req.body.id;
-        await Product.deleteOne({_id: id})
+        await Product.deleteOne({ _id: id })
             .then((data) => {
                 fs.unlink(`./public/img/product/${req.body.img}`, (err) => {
                     if (!err) {
                         res.json(data);
                     }
                 });
-                
+
             })
             .catch((err) => {
                 res.json(err);
@@ -73,8 +73,24 @@ class ProductController {
 
     async get(req, res) {
         const id = req.params.id;
-        const product = await Product.find({_id:id}).lean();
+        const product = await Product.find({ _id: id }).lean();
         res.json(product);
+    }
+    async detail(req, res) {
+        let login, cart;
+        if (req.session.user !== undefined) {
+            login = true;
+        } else {
+            login = false;
+        }
+        if (req.session.cart === undefined) {
+            cart = [];
+        } else {
+            cart = req.session.cart;
+        }
+        const id = req.params.id.match(/^[0-9a-fA-F]{24}$/);
+        const product = await Product.find({ _id: id }).lean();
+        res.render("pages/detail", { product, login, cart: cart.length });
     }
 }
 

@@ -6,25 +6,25 @@ class UserController {
         const email = req.body.email;
         const username = req.body.username;
         const pass = req.body.password;
-        bcrypt.hash(pass, 10).then(async (password) => {
+        bcrypt.hash(pass, 10).then(async(password) => {
             const newUser = new User({ email, username, password });
             await newUser.save();
             res.redirect("/");
         }).catch((err) => {
             console.log(err);
         });
-        
+
     }
 
     async login(req, res) {
         const username = req.body.username;
         const pass = req.body.password;
-        const user = await User.findOne({username});
-        if(user !== null){
+        const user = await User.findOne({ username });
+        if (user !== null) {
             bcrypt.compare(pass, user.password).then((result) => {
-                if(result){
+                if (result) {
                     console.log("Success");
-                    req.session.user = {usernmane : user.username, role: user.role, avatar: user.avatar};
+                    req.session.user = { usernmane: user.username, role: user.role, avatar: user.avatar };
                     res.redirect("/");
                 } else {
                     res.redirect("/");
@@ -33,7 +33,7 @@ class UserController {
             });
         } else {
             res.redirect("/");
-            console.log("undefined username");  
+            console.log("undefined username");
         }
     }
 
@@ -60,7 +60,7 @@ class UserController {
         //           console.log(err);
         //         }
         //     });
-            
+
         // }else{
         //     image = req.body.image;
         // }
@@ -70,7 +70,7 @@ class UserController {
 
     async delete(req, res) {
         const id = req.body.id;
-        await User.deleteOne({_id: id})
+        await User.deleteOne({ _id: id })
             .then((data) => {
                 res.json(data);
             })
@@ -81,7 +81,7 @@ class UserController {
 
     logout(req, res) {
         req.session.destroy((err) => {
-            if(!err){
+            if (!err) {
                 res.redirect("/");
             }
         });

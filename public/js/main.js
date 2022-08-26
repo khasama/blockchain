@@ -1,17 +1,15 @@
 $(document).ready(() => {
-    
+
     let currentAccount = "";
 
-    const abi = [
-        {
+    const abi = [{
             "inputs": [],
             "stateMutability": "nonpayable",
             "type": "constructor"
         },
         {
             "anonymous": false,
-            "inputs": [
-                {
+            "inputs": [{
                     "indexed": false,
                     "internalType": "string",
                     "name": "id",
@@ -30,24 +28,20 @@ $(document).ready(() => {
         {
             "inputs": [],
             "name": "owner",
-            "outputs": [
-                {
-                    "internalType": "address",
-                    "name": "",
-                    "type": "address"
-                }
-            ],
+            "outputs": [{
+                "internalType": "address",
+                "name": "",
+                "type": "address"
+            }],
             "stateMutability": "view",
             "type": "function"
         },
         {
-            "inputs": [
-                {
-                    "internalType": "string",
-                    "name": "_id",
-                    "type": "string"
-                }
-            ],
+            "inputs": [{
+                "internalType": "string",
+                "name": "_id",
+                "type": "string"
+            }],
             "name": "payment",
             "outputs": [],
             "stateMutability": "payable",
@@ -55,7 +49,7 @@ $(document).ready(() => {
         }
     ];
 
-    let r ;
+    let r;
     const addressSmartContract = "0x10EFF051c63d163c5BC6882E87822c06e8982c19";
     const OPTIONS = {
         defaultBlock: "latest",
@@ -65,7 +59,7 @@ $(document).ready(() => {
     const web3 = new Web3(window.ethereum, null, OPTIONS);
     window.ethereum.enable();
     let contract_MM = new web3.eth.Contract(abi, addressSmartContract);
-    
+
 
     $("#btnRegister").click(() => {
         const email = $("#rEmail").val();
@@ -81,14 +75,14 @@ $(document).ready(() => {
     });
 
     $("#connMM").click(() => {
-        if(checkMetamask()){
+        if (checkMetamask()) {
             connectMetamask().then((data) => {
                 currentAccount = data;
                 $("#wallet").html(currentAccount);
             }).catch((err) => {
                 console.log(err);
             });
-        }else{
+        } else {
             alert("Metamask not installed!!");
         }
     });
@@ -102,7 +96,7 @@ $(document).ready(() => {
         }).catch((err) => {
             console.log(err);
         });
-        
+
     });
 
 
@@ -114,36 +108,36 @@ $(document).ready(() => {
         }).done((data) => {
             let c = true;
             console.log(data);
-            if(currentAccount !== ""){
+            if (currentAccount !== "") {
                 $('#waitpayment').modal('show');
                 contract_MM.methods.payment("1").send({
-                    from: currentAccount,
-                    value: data.toFixed(3)*(10**18)
-                })
-                .on('confirmation', () => {
-                    if(c){
-                        $.ajax({
-                            method: "POST",
-                            url: `${window.location.origin}/cart/payment/`,
-                            data: {total: price, wallet: currentAccount}
-                        }).done((resutl) => {
-                            $("#wait-c").html(resutl);
-                            window.setTimeout(() => {
-                                window.location.href = "/";
-                            }, 3000);                   
+                        from: currentAccount,
+                        value: data.toFixed(3) * (10 ** 18)
+                    })
+                    .on('confirmation', () => {
+                        if (c) {
+                            $.ajax({
+                                method: "POST",
+                                url: `${window.location.origin}/cart/payment/`,
+                                data: { total: price, wallet: currentAccount }
+                            }).done((resutl) => {
+                                $("#wait-c").html(resutl);
+                                window.setTimeout(() => {
+                                    window.location.href = "/";
+                                }, 3000);
+                                c = false;
+                            }).fail(() => {
+                                $('#waitpayment').modal('hide');
+                                alert("Error !!!!");
+                            });
                             c = false;
-                        }).fail(() => {
-                            $('#waitpayment').modal('hide');
-                            alert("Error !!!!");
-                        });
-                        c = false;
-                    }
-                })
-                .on('error', (error) => { 
-                    console.log(error);
-                    $('#waitpayment').modal('hide');
-                    alert("Thanh toán mẹ thành công");
-                });
+                        }
+                    })
+                    .on('error', (error) => {
+                        console.log(error);
+                        $('#waitpayment').modal('hide');
+                        alert("Thanh toán mẹ thành công");
+                    });
             } else {
                 alert("Metamask not connect");
             }
@@ -151,12 +145,12 @@ $(document).ready(() => {
             alert("Error !!!!");
             $("#loading").hide();
         });
-        
+
     });
 
 });
 
-function checkMetamask(){
+function checkMetamask() {
     if (typeof window.ethereum !== 'undefined') {
         return true;
     } else {
@@ -164,7 +158,7 @@ function checkMetamask(){
     }
 }
 
-async function connectMetamask(){
+async function connectMetamask() {
     const accounts = await ethereum.request({ method: 'eth_requestAccounts' });
     return accounts[0];
 }

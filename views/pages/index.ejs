@@ -13,13 +13,12 @@
 
     <body>
         <!-- Register Modal -->
-        <div class="modal fade" id="register-form" tabindex="-1" role="dialog"
-        aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade" id="register-form" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
                         <img src="img/product/22.png" alt="">
-				        <p href="/index">ATOM Store</p>
+                        <p href="/index">ATOM Store</p>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -29,18 +28,15 @@
                         <form method="POST" action="/user/register">
                             <div class="form-group">
                                 <label for="email">Email</label>
-                                <input type="email" class="form-control" id="emailReg"
-                                    aria-describedby="emailHelp" name="email" placeholder="Enter email">
+                                <input type="email" class="form-control" id="emailReg" aria-describedby="emailHelp" name="email" placeholder="Enter email">
                             </div>
                             <div class="form-group">
                                 <label for="username">Username</label>
-                                <input type="text" class="form-control" id="usernameReg" name="username"
-                                    placeholder="Username" autocomplete="off">
+                                <input type="text" class="form-control" id="usernameReg" name="username" placeholder="Username" autocomplete="off">
                             </div>
                             <div class="form-group">
                                 <label for="pass">Password</label>
-                                <input type="password" class="form-control" id="passwordReg" name="password"
-                                    placeholder="Password">
+                                <input type="password" class="form-control" id="passwordReg" name="password" placeholder="Password">
                             </div>
                             <button type="submit" class="btn bg-info text-white">Submit</button>
                         </form>
@@ -50,13 +46,12 @@
         </div>
 
         <!-- Login Modal -->
-        <div class="modal fade" id="login-form" tabindex="-1" role="dialog"
-            aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade" id="login-form" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
                         <img src="img/product/22.png" alt="">
-				        <p href="/index">ATOM Store</p>	
+                        <p href="/index">ATOM Store</p>
                         <br>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
@@ -67,13 +62,11 @@
                         <form method="POST" action="/user/login">
                             <div class="form-group">
                                 <label for="username">Username</label>
-                                <input type="text" class="form-control" id="usernameLog" name="username"
-                                    placeholder="Enter username">
+                                <input type="text" class="form-control" id="usernameLog" name="username" placeholder="Enter username">
                             </div>
                             <div class="form-group">
                                 <label for="pass">Password</label>
-                                <input type="password" class="form-control" id="passwordLog" name="password"
-                                    placeholder="Password">
+                                <input type="password" class="form-control" id="passwordLog" name="password" placeholder="Password">
                             </div>
                             <button type="submit" class="btn bg-info text-white text-center">Submit</button>
                         </form>
@@ -84,21 +77,24 @@
         <!-- Carousel -->
         <%- include('../partials/carousel') %>
 
-        <div class="container-fluid" style="width:85% !important;">
-            <h3>*Product</h3>
-            <div id="main" class="prod">
-                <% products.forEach(prod => { %> 
-                    <div class="card">
-                        <a href="/detail" class="btn bg-light"><img class="card-img-top" src="/img/product/<%- prod.image %>" alt="Card image cap"></a>
-                        <div class="card-body">
-                            <h5 class="card-title"><%- prod.name %></h5>
-                            <p class="card-text"><%- prod.price %>,00$</p>
-                            <a href="/cart/add/<%- prod._id %>/1" class="btn bg-info text-white">Add cart</a>
+            <div class="container-fluid" style="width:85% !important;">
+                <h3>*Product</h3>
+                <div id="main" class="prod">
+                    <% products.forEach(prod => { %>
+                        <div class="card">
+                            <a href="javascript:void(0)" class="btn bg-light"><img class="card-img-top" src="/img/product/<%- prod.image %>" alt="Card image cap"></a>
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    <%- prod.name %>
+                                </h5>
+                                <p class="card-text">
+                                    <%- prod.price %>,00$</p>
+                                <a href="/cart/add/<%- prod._id %>/1" class="btn bg-info text-white">Add cart</a>
+                            </div>
                         </div>
-                    </div>
-                <% }); %> 
+                        <% }); %>
+                </div>
             </div>
-        </div>
     </body>
 
 

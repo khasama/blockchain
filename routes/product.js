@@ -8,5 +8,6 @@ router.use("/create", productController.create);
 router.use("/update", productController.update);
 router.use("/delete", productController.delete);
 router.use("/get/:id", productController.get);
+router.use("/:id", productController.detail);
 
 module.exports = router;

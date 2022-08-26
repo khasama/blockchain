@@ -3,47 +3,47 @@ const Bill = require("../models/Bill");
 const CoinGecko = require('coingecko-api');
 
 class CartController {
-    
+
 
     async add(req, res) {
         const id = req.params.id;
-        
+
         const quantity = req.params.quantity;
-        const product = await Product.findOne({_id:id});
+        const product = await Product.findOne({ _id: id });
         const cart = {
             id: product._id,
             name: product.name,
             price: product.price,
             quantity: quantity
         };
-        
-        if(req.session.cart === undefined){
+
+        if (req.session.cart === undefined) {
             req.session.cart = [];
             req.session.cart.push(cart);
-        }else{
+        } else {
             let index = -1;
             req.session.cart.find((item, i) => {
-                if(item.id == id){
+                if (item.id == id) {
                     index = i;
                 }
             });
-            if(index >= 0){
-                req.session.cart[index].quantity++ ;
-            }else{
+            if (index >= 0) {
+                req.session.cart[index].quantity++;
+            } else {
                 req.session.cart.push(cart);
             }
-            
+
         }
-        
+
         res.redirect("/");
     }
 
     update(req, res) {
-    
+
     }
 
     delete(req, res) {
-        
+
     }
 
     async convert(req, res) {
@@ -54,7 +54,7 @@ class CartController {
             vs_currencies: 'eth'
         });
         const price = rs.data['usd-coin'].eth;
-        res.json(usd*price);
+        res.json(usd * price);
     }
 
     async payment(req, res) {
@@ -64,22 +64,22 @@ class CartController {
         const newBill = new Bill({ detail: cart, totalPrice, wallet });
         newBill.save();
         req.session.cart = [];
-        res.json("Payment success");
+        res.json("Thanh toán thành công!");
     }
 
-    home(req, res){
+    home(req, res) {
         let login, cart;
-        if(req.session.user !== undefined){
+        if (req.session.user !== undefined) {
             login = true;
-        }else{
+        } else {
             login = false;
         }
-        if(req.session.cart === undefined){
+        if (req.session.cart === undefined) {
             cart = [];
         } else {
             cart = req.session.cart;
         }
-        res.render("pages/cart", {login, cart: cart.length, carts: cart});
+        res.render("pages/cart", { login, cart: cart.length, carts: cart });
     }
 
 }

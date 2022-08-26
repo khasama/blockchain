@@ -1,292 +1,294 @@
-	<!-- top-header -->
-	<div class="top_bg">
-		<div class="container">
-			<div class="header_top-sec">
-				<div class="top_right pt-2">
-					<ul>
-						<li><a href="javascript:void(0)">Contact</a></li>|
-						<li><a href="javascript:void(0)">Track Order</a></li>
-					</ul>
-				</div>
-				<div class="top_left">
-					<ul class="mb-0">
-						<li class="top_link"><a href="javascript:void(0)"><img class="pb-1" src="https://img.icons8.com/color/48/000000/vietnam-circular.png"/> VN</a></li>|
-						<li class="top_link" onclick="log()">
-							<a href="javascript:void(0)">My Account</a>
-							<ul>
-								<li>
-									<div id="log">
-										<% if(login) {%>
-											<a href="/user/logout" class="button_1">
+<!-- top-header -->
+<div class="top_bg">
+    <div class="container">
+        <div class="header_top-sec">
+            <div class="top_right pt-2">
+                <ul>
+                    <li><a href="javascript:void(0)">Contact</a></li>|
+                    <li><a href="javascript:void(0)">Track Order</a></li>
+                </ul>
+            </div>
+            <div class="top_left">
+                <ul class="mb-0">
+                    <li class="top_link">
+                        <a href="javascript:void(0)"><img class="pb-1" src="https://img.icons8.com/color/48/000000/vietnam-circular.png" /> VN</a>
+                    </li>|
+                    <li class="top_link" onclick="log()">
+                        <a href="javascript:void(0)">My Account</a>
+                        <ul>
+                            <li>
+                                <div id="log">
+                                    <% if(login) {%>
+                                        <a href="/user/logout" class="button_1">
 												Logout
 											</a>
-										<% } else { %>
-											<div>
-												<button type="button" class="button_1" data-toggle="modal" data-target="#register-form">
+                                        <% } else { %>
+                                            <div>
+                                                <button type="button" class="button_1" data-toggle="modal" data-target="#register-form">
 													Register
-												</button>
-												|
-												<button type="button" class="button_1" data-toggle="modal" data-target="#login-form">
+												</button> |
+                                                <button type="button" class="button_1" data-toggle="modal" data-target="#login-form">
 													Login
 												</button>
-											</div>
-										<% } %>
-									</div>
-								</li>
-							</ul>
-						</li>					
-					</ul>
-				</div>
-				<div class="clearfix"> </div>
-			</div>
-		</div>
-	</div>
-	<!-- top-header -->
-	<!-- logo-cart -->
-	<div class="header_top pt-1 pb-0">
-		<div class="container">
-			<div class="logo pt-3">
-				<img src="img/product/22.png" alt="">
-				<a href="/">ATOM Store</a>			 
-			</div>
-			<div class="header_right">
-				<div class="cart box_1">
-					<button onclick="metamask()" class="button_1"><img src="img/product/mtm.webp"/></button>
-					<div class="clearfix"> </div>
-				</div>	
-				<div class="pb-2">
-					<a href="/cart">
-						<h3 class="mb-0"> <div class="total">
-							<span class="simpleCart_total"></span> (<span id="simpleCart_quantity" class="simpleCart_quantity"></span> items)</div>
-							<a href="/cart"><img src="img/product/cart1.png" alt=""/></a><span id="cart"><%- cart %> </span>
-						</h3>
-					</a>	 
-				</div>
-			<div class="clearfix"></div>	
-		</div>
-		<div id="metamask">
-			<div class="mtm">
-				<button type="button" onclick="closemtm()" class="btn-close" id="closemtm" title="Close">
+                                            </div>
+                                            <% } %>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <div class="clearfix"> </div>
+        </div>
+    </div>
+</div>
+<!-- top-header -->
+<!-- logo-cart -->
+<div class="header_top pt-1 pb-0">
+    <div class="container">
+        <div class="logo pt-3">
+            <img src="img/product/22.png" alt="">
+            <a href="/">ATOM Store</a>
+        </div>
+        <div class="header_right">
+            <div class="cart box_1">
+                <button onclick="metamask()" class="button_1"><img src="img/product/mtm.webp"/></button>
+                <div class="clearfix"> </div>
+            </div>
+            <div class="pb-2">
+                <a href="/cart">
+                    <h3 class="mb-0">
+                        <div class="total">
+                            <span class="simpleCart_total"></span> (<span id="simpleCart_quantity" class="simpleCart_quantity"></span> items)</div>
+                        <img src="img/product/cart1.png" alt="" /><span id="cart"><%- cart %> </span>
+                    </h3>
+                </a>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <div id="metamask">
+            <div class="mtm">
+                <button type="button" onclick="closemtm()" class="btn-close" id="closemtm" title="Close">
 					<i class="fas fa-times-circle"></i>
 				</button>
-				<p>Metamask wallet</p>
-			</div>
-		</div>
-	</div>
-	<!-- //logo-cart -->
-	<!------>
-	<div class="mega_nav py-1">
-		<div class="container">
-			<div class="menu_sec">
-			<!-- start header menu -->
-			<ul class="megamenu skyblue">
-				<li class="active grid"><a class="color1" href="/">Home</a></li>
-				<li class="grid"><a class="color1" href="javascript:void(0)">Máy tính để bàn</a>
-					<div class="megapanel">
-						<div class="row">
-							<div class="col1">
-								<div class="h_nav">
-									<h6>Thương hiệu tai tiếng</h6>
-									<ul>
-										<li><a href="javascript:void(0)">Dell</a></li>
-										<li><a href="javascript:void(0)">HP</a></li>
-										<li><a href="javascript:void(0)">Dell</a></li>
-										<li><a href="javascript:void(0)">HP</a></li>
-										<li><a href="javascript:void(0)">Dell</a></li>
-										<li><a href="javascript:void(0)">HP</a></li>
-									</ul>	
-								</div>							
-							</div>
-							<div class="col1">
-								<div class="h_nav">
-									<h6>Thương hiệu tai tiếng</h6>
-									<ul>
-										<li><a href="javascript:void(0)">Dell</a></li>
-										<li><a href="javascript:void(0)">HP</a></li>
-										<li><a href="javascript:void(0)">Dell</a></li>
-										<li><a href="javascript:void(0))">HP</a></li>
-										<li><a href="javascript:void(0)">Dell</a></li>
-										<li><a href="javascript:void(0)">HP</a></li>
-									</ul>	
-								</div>							
-							</div>
-							<div class="col1">
-								<div class="h_nav">
-									<h6>Thương hiệu tai tiếng</h6>
-									<ul>
-										<li><a href="javascript:void(0)">Dell</a></li>
-										<li><a href="javascript:void(0)">HP</a></li>
-										<li><a href="javascript:void(0)">Dell</a></li>
-										<li><a href="javascript:void(0)">HP</a></li>
-										<li><a href="javascript:void(0)">Dell</a></li>
-										<li><a href="javascript:void(0)">HP</a></li>
-									</ul>	
-								</div>													
-							</div>
-							<div class="col1">
-								<div class="h_nav">
-									<div class="h_nav">
-										<h6>Thương hiệu tai tiếng</h6>
-										<ul>
-											<li><a href="javascript:void(0)">Dell</a></li>
-											<li><a href="javascript:void(0)">HP</a></li>
-											<li><a href="javascript:void(0)">Dell</a></li>
-											<li><a href="javascript:void(0)">HP</a></li>
-											<li><a href="javascript:void(0)">Dell</a></li>
-											<li><a href="javascript:void(0)">HP</a></li>
-										</ul>	
-									</div>		
-								</div>						
-							</div>
-						</div>
+                <p>Metamask wallet</p>
+            </div>
+        </div>
+    </div>
+    <!-- //logo-cart -->
+    <!------>
+    <div class="mega_nav py-1">
+        <div class="container">
+            <div class="menu_sec">
+                <!-- start header menu -->
+                <ul class="megamenu skyblue">
+                    <li class="active grid"><a class="color1" href="/">Home</a></li>
+                    <li class="grid"><a class="color1" href="javascript:void(0)">Máy tính để bàn</a>
+                        <div class="megapanel">
+                            <div class="row">
+                                <div class="col1">
+                                    <div class="h_nav">
+                                        <h6>Thương hiệu tai tiếng</h6>
+                                        <ul>
+                                            <li><a href="javascript:void(0)">Dell</a></li>
+                                            <li><a href="javascript:void(0)">HP</a></li>
+                                            <li><a href="javascript:void(0)">Dell</a></li>
+                                            <li><a href="javascript:void(0)">HP</a></li>
+                                            <li><a href="javascript:void(0)">Dell</a></li>
+                                            <li><a href="javascript:void(0)">HP</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="col1">
+                                    <div class="h_nav">
+                                        <h6>Thương hiệu tai tiếng</h6>
+                                        <ul>
+                                            <li><a href="javascript:void(0)">Dell</a></li>
+                                            <li><a href="javascript:void(0)">HP</a></li>
+                                            <li><a href="javascript:void(0)">Dell</a></li>
+                                            <li><a href="javascript:void(0))">HP</a></li>
+                                            <li><a href="javascript:void(0)">Dell</a></li>
+                                            <li><a href="javascript:void(0)">HP</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="col1">
+                                    <div class="h_nav">
+                                        <h6>Thương hiệu tai tiếng</h6>
+                                        <ul>
+                                            <li><a href="javascript:void(0)">Dell</a></li>
+                                            <li><a href="javascript:void(0)">HP</a></li>
+                                            <li><a href="javascript:void(0)">Dell</a></li>
+                                            <li><a href="javascript:void(0)">HP</a></li>
+                                            <li><a href="javascript:void(0)">Dell</a></li>
+                                            <li><a href="javascript:void(0)">HP</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="col1">
+                                    <div class="h_nav">
+                                        <div class="h_nav">
+                                            <h6>Thương hiệu tai tiếng</h6>
+                                            <ul>
+                                                <li><a href="javascript:void(0)">Dell</a></li>
+                                                <li><a href="javascript:void(0)">HP</a></li>
+                                                <li><a href="javascript:void(0)">Dell</a></li>
+                                                <li><a href="javascript:void(0)">HP</a></li>
+                                                <li><a href="javascript:void(0)">Dell</a></li>
+                                                <li><a href="javascript:void(0)">HP</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
 
-					</div>
-				</li>
-				<li><a class="color1" href="javascript:void(0)">Laptop</a>
-					<div class="megapanel">
-						<div class="row">
-							<div class="col1">
-								<div class="h_nav">
-									<h6>Thương hiệu tai tiếng</h6>
-									<ul>
-										<li><a href="javascript:void(0)">Dell</a></li>
-										<li><a href="javascript:void(0)">HP</a></li>
-										<li><a href="javascript:void(0)">Dell</a></li>
-										<li><a href="javascript:void(0)">HP</a></li>
-										<li><a href="javascript:void(0)">Dell</a></li>
-										<li><a href="javascript:void(0)">HP</a></li>
-									</ul>	
-								</div>													
-							</div>
-							<div class="col1">
-								<div class="h_nav">
-									<div class="h_nav">
-										<h6>Thương hiệu tai tiếng</h6>
-										<ul>
-											<li><a href="javascript:void(0)">Dell</a></li>
-											<li><a href="javascript:void(0)">HP</a></li>
-											<li><a href="javascript:void(0)">Dell</a></li>
-											<li><a href="javascript:void(0)">HP</a></li>
-											<li><a href="javascript:void(0)">Dell</a></li>
-											<li><a href="javascript:void(0)">HP</a></li>
-										</ul>	
-									</div>		
-								</div>						
-							</div>
-						</div>
-					</div>
-				</li>				
-				<li><a class="color1" href="javascript:void(0)">Thiết bị gaming</a>
-					<div class="megapanel">
-						<div class="row">
-							<div class="col1">
-								<div class="h_nav">
-									<h6>Thương hiệu tai tiếng</h6>
-									<ul>
-										<li><a href="javascript:void(0)">Dell</a></li>
-										<li><a href="javascript:void(0)">HP</a></li>
-										<li><a href="javascript:void(0)">Dell</a></li>
-										<li><a href="javascript:void(0)">HP</a></li>
-										<li><a href="javascript:void(0)">Dell</a></li>
-										<li><a href="javascript:void(0)">HP</a></li>
-									</ul>	
-								</div>													
-							</div>
-							<div class="col1">
-								<div class="h_nav">
-									<div class="h_nav">
-										<h6>Thương hiệu tai tiếng</h6>
-										<ul>
-											<li><a href="javascript:void(0)">Dell</a></li>
-											<li><a href="javascript:void(0)">HP</a></li>
-											<li><a href="javascript:void(0)">Dell</a></li>
-											<li><a href="javascript:void(0)">HP</a></li>
-											<li><a href="javascript:void(0)">Dell</a></li>
-											<li><a href="javascript:void(0)">HP</a></li>
-										</ul>	
-									</div>		
-								</div>						
-							</div>
-						</div>
-					</div>
-				</li>
-				<li><a class="color1" href="javascript:void(0)">Card đồ hoạ</a>
-					<div class="megapanel">
-						<div class="row">
-							<div class="col1">
-								<div class="h_nav">
-									<h6>Thương hiệu tai tiếng</h6>
-									<ul>
-										<li><a href="products.html">Dell</a></li>
-										<li><a href="products.html">HP</a></li>
-										<li><a href="products.html">Dell</a></li>
-										<li><a href="products.html">HP</a></li>
-										<li><a href="products.html">Dell</a></li>
-										<li><a href="products.html">HP</a></li>
-									</ul>	
-								</div>													
-							</div>
-							<div class="col1">
-								<div class="h_nav">
-									<div class="h_nav">
-										<h6>Thương hiệu tai tiếng</h6>
-										<ul>
-											<li><a href="products.html">Dell</a></li>
-											<li><a href="products.html">HP</a></li>
-											<li><a href="products.html">Dell</a></li>
-											<li><a href="products.html">HP</a></li>
-											<li><a href="products.html">Dell</a></li>
-											<li><a href="products.html">HP</a></li>
-										</ul>	
-									</div>		
-								</div>						
-							</div>
-						</div>
-					</div>
-				</li>				
-				<li><a  class="color1" href="#">Ổ cứng</a>
-					<div class="megapanel">
-						<div class="row">
-							<div class="col1">
-								<div class="h_nav">
-									<h6>Thương hiệu tai tiếng</h6>
-									<ul>
-										<li><a href="products.html">Dell</a></li>
-										<li><a href="products.html">HP</a></li>
-										<li><a href="products.html">Dell</a></li>
-										<li><a href="products.html">HP</a></li>
-										<li><a href="products.html">Dell</a></li>
-										<li><a href="products.html">HP</a></li>
-									</ul>	
-								</div>													
-							</div>
-							<div class="col1">
-								<div class="h_nav">
-									<div class="h_nav">
-										<h6>Thương hiệu tai tiếng</h6>
-										<ul>
-											<li><a href="products.html">Dell</a></li>
-											<li><a href="products.html">HP</a></li>
-											<li><a href="products.html">Dell</a></li>
-											<li><a href="products.html">HP</a></li>
-											<li><a href="products.html">Dell</a></li>
-											<li><a href="products.html">HP</a></li>
-										</ul>	
-									</div>		
-								</div>						
-							</div>
-						</div>
-					</div>
-				</li>								
-			</ul> 
-				<div class="search">
-					<form>
-						<input type="text" value="" placeholder="Search...">
-						<input type="submit" value="">
-						</form>
-				</div>
-				<div class="clearfix"></div>
-			</div>
-		</div>
-	</div>
-	<!--end header-->
+                        </div>
+                    </li>
+                    <li><a class="color1" href="javascript:void(0)">Laptop</a>
+                        <div class="megapanel">
+                            <div class="row">
+                                <div class="col1">
+                                    <div class="h_nav">
+                                        <h6>Thương hiệu tai tiếng</h6>
+                                        <ul>
+                                            <li><a href="javascript:void(0)">Dell</a></li>
+                                            <li><a href="javascript:void(0)">HP</a></li>
+                                            <li><a href="javascript:void(0)">Dell</a></li>
+                                            <li><a href="javascript:void(0)">HP</a></li>
+                                            <li><a href="javascript:void(0)">Dell</a></li>
+                                            <li><a href="javascript:void(0)">HP</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="col1">
+                                    <div class="h_nav">
+                                        <div class="h_nav">
+                                            <h6>Thương hiệu tai tiếng</h6>
+                                            <ul>
+                                                <li><a href="javascript:void(0)">Dell</a></li>
+                                                <li><a href="javascript:void(0)">HP</a></li>
+                                                <li><a href="javascript:void(0)">Dell</a></li>
+                                                <li><a href="javascript:void(0)">HP</a></li>
+                                                <li><a href="javascript:void(0)">Dell</a></li>
+                                                <li><a href="javascript:void(0)">HP</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li><a class="color1" href="javascript:void(0)">Thiết bị gaming</a>
+                        <div class="megapanel">
+                            <div class="row">
+                                <div class="col1">
+                                    <div class="h_nav">
+                                        <h6>Thương hiệu tai tiếng</h6>
+                                        <ul>
+                                            <li><a href="javascript:void(0)">Dell</a></li>
+                                            <li><a href="javascript:void(0)">HP</a></li>
+                                            <li><a href="javascript:void(0)">Dell</a></li>
+                                            <li><a href="javascript:void(0)">HP</a></li>
+                                            <li><a href="javascript:void(0)">Dell</a></li>
+                                            <li><a href="javascript:void(0)">HP</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="col1">
+                                    <div class="h_nav">
+                                        <div class="h_nav">
+                                            <h6>Thương hiệu tai tiếng</h6>
+                                            <ul>
+                                                <li><a href="javascript:void(0)">Dell</a></li>
+                                                <li><a href="javascript:void(0)">HP</a></li>
+                                                <li><a href="javascript:void(0)">Dell</a></li>
+                                                <li><a href="javascript:void(0)">HP</a></li>
+                                                <li><a href="javascript:void(0)">Dell</a></li>
+                                                <li><a href="javascript:void(0)">HP</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li><a class="color1" href="javascript:void(0)">Card đồ hoạ</a>
+                        <div class="megapanel">
+                            <div class="row">
+                                <div class="col1">
+                                    <div class="h_nav">
+                                        <h6>Thương hiệu tai tiếng</h6>
+                                        <ul>
+                                            <li><a href="products.html">Dell</a></li>
+                                            <li><a href="products.html">HP</a></li>
+                                            <li><a href="products.html">Dell</a></li>
+                                            <li><a href="products.html">HP</a></li>
+                                            <li><a href="products.html">Dell</a></li>
+                                            <li><a href="products.html">HP</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="col1">
+                                    <div class="h_nav">
+                                        <div class="h_nav">
+                                            <h6>Thương hiệu tai tiếng</h6>
+                                            <ul>
+                                                <li><a href="products.html">Dell</a></li>
+                                                <li><a href="products.html">HP</a></li>
+                                                <li><a href="products.html">Dell</a></li>
+                                                <li><a href="products.html">HP</a></li>
+                                                <li><a href="products.html">Dell</a></li>
+                                                <li><a href="products.html">HP</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li><a class="color1" href="#">Ổ cứng</a>
+                        <div class="megapanel">
+                            <div class="row">
+                                <div class="col1">
+                                    <div class="h_nav">
+                                        <h6>Thương hiệu tai tiếng</h6>
+                                        <ul>
+                                            <li><a href="products.html">Dell</a></li>
+                                            <li><a href="products.html">HP</a></li>
+                                            <li><a href="products.html">Dell</a></li>
+                                            <li><a href="products.html">HP</a></li>
+                                            <li><a href="products.html">Dell</a></li>
+                                            <li><a href="products.html">HP</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="col1">
+                                    <div class="h_nav">
+                                        <div class="h_nav">
+                                            <h6>Thương hiệu tai tiếng</h6>
+                                            <ul>
+                                                <li><a href="products.html">Dell</a></li>
+                                                <li><a href="products.html">HP</a></li>
+                                                <li><a href="products.html">Dell</a></li>
+                                                <li><a href="products.html">HP</a></li>
+                                                <li><a href="products.html">Dell</a></li>
+                                                <li><a href="products.html">HP</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+                <div class="search">
+                    <form>
+                        <input type="text" value="" placeholder="Search...">
+                        <input type="submit" value="">
+                    </form>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+    <!--end header-->
